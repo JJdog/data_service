@@ -1,0 +1,26 @@
+server:
+  port: 6010
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: dev
+  kafka:
+    bootstrap-servers:
+    consumer:
+      group-id:
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserialize
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserialize
+      max-poll-records: 1000
+      properties:
+        session.timeout.ms :15000
+      heartbeat-interval: 3000
